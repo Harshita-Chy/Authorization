@@ -1,16 +1,18 @@
+
 const express = require("express");
 const authRoutes = require("./routes/auth.routes");
-const connectDB = require("./db/db.js");
+const cookieParser = require("cookie-parser");
 
 const app = express();
-connectDB();
 
 app.use(express.json());
+app.use(cookieParser());
+
 
 app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
-})
+});
 
 module.exports = app;
